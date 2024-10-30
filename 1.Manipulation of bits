@@ -1,0 +1,38 @@
+// Least significant bit, and most significant bit
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner in = new Scanner(System.in);
+        int x = in.nextInt();
+        System.out.println(swap(x));
+        in.close();
+    }
+
+    static int swap(int a) {
+        // Convert integer to binary string
+        String s = Integer.toBinaryString(a);
+        int n = s.length();
+
+        // If there's only one bit, return the number as is
+        if (n == 1) {
+            return a;
+        }
+
+        // Use a StringBuilder for efficient string manipulation
+        StringBuilder sb = new StringBuilder(s);
+        
+        // Swap the most significant bit with the least significant bit
+        char msb = sb.charAt(0);
+        char lsb = sb.charAt(n - 1);
+        sb.setCharAt(0, lsb);
+        sb.setCharAt(n - 1, msb);
+
+        // Parse the modified binary string back to an integer
+        int ans = Integer.parseInt(sb.toString(), 2);
+        return ans;
+    }
+}
